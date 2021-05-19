@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from cities import views as cities_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('<str:airport>/', cities_views.cities),
+    path('', cities_views.cities_home),
 ]
