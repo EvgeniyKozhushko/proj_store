@@ -20,6 +20,18 @@ from cities import views as cities_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('author/<int:author_id>/', cities_views.author),
+    path('authors', cities_views.book_author_list),
+
+    path('series/<int:series_id>/', cities_views.series),
+    path('seriess', cities_views.book_series_list),
+
+    path('genre/<int:genre_id>/', cities_views.genre),
+    path('genres', cities_views.book_genre_list),
+
+    path('published/<int:published_id>/', cities_views.published),
+    path('published_houses', cities_views.book_published_list),
+
     path('<str:airport>/', cities_views.cities),
     path('', cities_views.cities_home),
 ]
