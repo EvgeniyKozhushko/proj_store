@@ -10,8 +10,12 @@
     <h1>Все серии</h1>
     <ul>
         {% for published in published_list %}
-        <li><a href ="/published/{{ published.pk }}">{{ published }}</a></li>
+        <li>{{ forloop.counter }} Punlished House# {{ published.pk }} <a href ="{% url 'published' published.pk %}">{{ published }}</a>
+            || <a href ="{% url 'published-update' published.pk %}">Update</a>
+            || <a href ="{% url 'published-delete' published.pk %}">Delete</a> </li>
         {% endfor %}
     </ul>
     </body>
+    <a href="{% url 'published-create' %}">Создать нового Издателя</a> <br>
+    <a href="{% url 'home' %}">На главную</a>
 </html>
