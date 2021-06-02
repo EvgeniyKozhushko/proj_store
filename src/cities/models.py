@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -8,6 +9,10 @@ class Author(models.Model):
 
     def __str__(self) -> str:
         return self.dim_1
+
+    def get_absolute_url(self):
+        return reverse('author:author-list')
+
     class Meta:
         verbose_name = "Выбор автора"
         verbose_name_plural = "Выбор автора"
@@ -18,6 +23,8 @@ class Series(models.Model):
     def __str__(self) -> str:
         return self.dim_2
 
+    def get_absolute_url(self):
+        return reverse('series:series-list')
     class Meta:
         verbose_name = "Выбор серии"
         verbose_name_plural = "Выбор серии"   
@@ -27,6 +34,9 @@ class Genre(models.Model):
 
     def __str__(self) -> str:
         return self.dim_3
+
+    def get_absolute_url(self):
+        return reverse('genre:genre-list')    
     class Meta:
         verbose_name = "Выбор жанра"
         verbose_name_plural = "Выбор жанра"        
@@ -37,6 +47,8 @@ class PublishingHouse(models.Model):
     def __str__(self) -> str:
         return self.dim_4
 
+    def get_absolute_url(self):
+        return reverse('publishinghouse:published-list')
     class Meta:
         verbose_name = "Выбор издателя"
         verbose_name_plural = "Выбор издателя"   

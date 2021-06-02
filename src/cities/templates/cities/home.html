@@ -11,10 +11,10 @@
     <a href='/admin'> Админка </a>
 
     <ul>
-        <li><a href ="/authors">Авторы</a></li>
-        <li><a href ="/genres{{ genre.pk }}">Жанры</a></li>
-        <li><a href ="/seriess">Серии</a></li>
-        <li><a href ="/published_houses">Издательства</a></li>
+        <li><a href ="{% url 'author:author-list' %}">Авторы</a></li>
+        <li><a href ="{% url 'genre:genre-list' %}">Жанры</a></li>
+        <li><a href ="{% url 'series:series-list' %}">Серии</a></li>
+        <li><a href ="{% url 'publishinghouse:published-list' %}">Издательства</a></li>
     </ul>
     
 </body>

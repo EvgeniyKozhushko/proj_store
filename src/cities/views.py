@@ -1,253 +1,92 @@
 from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from . import models
 from . import forms
 
 # Create your views here.
 
-AIRPORTS = {
-    'MSQ' : 'Minsk',
-    'KBP' : 'Kiev',
-    'IEV' : 'Kiev',
-    'DME' : 'Moscow',
-    'SVO' : 'Moscow',
-    'VKO' : 'Moscow',
-    'WAW' : 'Warsaw',
-    'WMI' : 'Warsaw',
-    'VNO' : 'Vilnius',
-    'KUN' : 'Kaunas',
-    'PLQ' : 'Palanga',
-    'RIX' : 'Riga',
-    'LED' : 'St.Petersburg',
-    'SXF' : 'Berlin',
-    'TXL' : 'Berlin',
-    'CDG' : 'Paris',
-    'BVA' : 'Paris',
-    'ORY' : 'Paris',
-    'BCN' : 'Barcelona',
-    'ATH' : 'Athens',
-}
+# def cities_home(request):
+#     return render(request, template_name ="home.html", context = {})
 
-def cities(request, airport):
-    city = AIRPORTS.get(airport.upper(), 'City not found')
-    ctx = {
-        'city' : city
-    }
-    return render(request, template_name ="cities.html", context = ctx)
+class Home(TemplateView):
+    template_name = 'cities/home.html'
+#Author
+class AuthorDetailView(DetailView):
+    model = models.Author
 
-def cities_home(request):
-    return render(request, template_name ="home.html", context = {})
+class AuthorListView(ListView):
+    model = models.Author
 
-def author(request, author_id):
-    author = models.Author.objects.get(pk=author_id)
-    ctx = {
-        'author' : author
-    }
-    return render(request, template_name ="author.html", context = ctx)
+class AuthorCreateView(CreateView):
+    model = models.Author
+    form_class = forms.CreateAuthorForm
+    #fields = ('dim_1', 'author_discription')
 
-def book_author_list(request):
-    book_author = models.Author.objects.all()
-    ctx = {
-        'book_author' : book_author
-    }
-    return render(request, template_name ="book_author_list.html", context = ctx)
+class AuthorUpdateView(UpdateView):
+    model = models.Author
+    form_class = forms.CreateAuthorForm
 
-def series(request, series_id):
-    series = models.Series.objects.get(pk=series_id)
-    ctx = {
-        'series' : series
-    }
-    return render(request, template_name ="series.html", context = ctx)
+class AuthorDeleteView(DeleteView):
+    model = models.Author
+    success_url = reverse_lazy('author:author-list')    
 
-def book_series_list(request):
-    book_series = models.Series.objects.all()
-    ctx = {
-        'book_series' : book_series
-    }
-    return render(request, template_name ="series_list.html", context = ctx)      
+#Series
+class SeriesDetailView(DetailView):
+    model = models.Series
 
-def genre(request, genre_id):
-    genre = models.Genre.objects.get(pk=genre_id)
-    ctx = {
-        'genre' : genre
-    }
-    return render(request, template_name ="genre.html", context = ctx)
+class SeriesListView(ListView):
+    model = models.Series
 
-def book_genre_list(request):
-    genre_list = models.Genre.objects.all()
-    ctx = {
-        'book_genre' : genre_list
-    }
-    return render(request, template_name ="genre_list.html", context = ctx)  
+class SeriesCreateView(CreateView):
+    model = models.Series
+    form_class = forms.CreateSeriesForm
+    #fields = ('dim_2', 'series_discription')
 
-def published(request, published_id):
-    published = models.PublishingHouse.objects.get(pk=published_id)
-    ctx = {
-        'published' : published
-    }
-    return render(request, template_name ="published.html", context = ctx)
+class SeriesUpdateView(UpdateView):
+    model = models.Series
+    form_class = forms.CreateSeriesForm
 
-def book_published_list(request):
-    published_list = models.PublishingHouse.objects.all()
-    ctx = {
-        'published_list' : published_list
-    }
-    return render(request, template_name ="published_list.html", context = ctx)  
+class SeriesDeleteView(DeleteView):
+    model = models.Series
+    success_url = reverse_lazy('series:series-list')    
 
-def author_create(request):
-    if request.method == 'POST':
-        form = forms.CreateAuthorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='authors-list'))
-        
-    else:
-        form = forms.CreateAuthorForm()
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="author_create.html", context = ctx)  
+#Genre
+class GenreDetailView(DetailView):
+    model = models.Genre
 
-def author_update(request, author_id):
-    if request.method == 'POST':
-        obj = models.Author.objects.get(pk=author_id)
-        form = forms.CreateAuthorForm(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='authors-list'))
-        
-    else:
-        obj = models.Author.objects.get(pk=author_id)
-        form = forms.CreateAuthorForm(instance=obj)
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="author_create.html", context = ctx)    
+class GenreListView(ListView):
+    model = models.Genre    
 
-def author_delete(request, author_id):
-    if request.method == 'POST':
-        obj = models.Author.objects.get(pk=author_id).delete()
-        return HttpResponseRedirect(reverse(viewname='authors-list'))
+class GenreCreateView(CreateView):
+    model = models.Genre
+    form_class = forms.CreateGenreForm
 
-    return render(request, template_name ="author_delete.html", context = {})
+class GenreUpdateView(UpdateView):
+    model = models.Genre
+    form_class = forms.CreateGenreForm
 
-def series_create(request):
-    if request.method == 'POST':
-        form = forms.CreateSeriesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='serisess-list'))
-        
-    else:
-        form = forms.CreateSeriesForm()
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="series_create.html", context = ctx)  
+class GenreDeleteView(DeleteView):
+    model = models.Genre
+    success_url = reverse_lazy('genre:genre-list') 
 
-def series_update(request, series_id):
-    if request.method == 'POST':
-        obj = models.Series.objects.get(pk=series_id)
-        form = forms.CreateSeriesForm(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='serisess-list'))
-        
-    else:
-        obj = models.Series.objects.get(pk=series_id)
-        form = forms.CreateSeriesForm(instance=obj)
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="series_create.html", context = ctx)    
+#Publishing House   
+class PublishingHouseDetailView(DetailView):
+    model = models.PublishingHouse
 
-def series_delete(request, series_id):
-    if request.method == 'POST':
-        obj = models.Series.objects.get(pk=series_id).delete()
-        return HttpResponseRedirect(reverse(viewname='serisess-list'))
+class PublishingHouseListView(ListView):
+    model = models.PublishingHouse   
 
-    return render(request, template_name ="series_delete.html", context = {})
+class PublishingHouseCreateView(CreateView):
+    model = models.PublishingHouse
+    form_class = forms.CreatePublishingHouseForm
 
-def genre_create(request):
-    if request.method == 'POST':
-        form = forms.CreateGenreForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='genres-list'))
-        
-    else:
-        form = forms.CreateGenreForm()
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="genre_create.html", context = ctx)  
+class PublishingHouseUpdateView(UpdateView):
+    model = models.PublishingHouse
+    form_class = forms.CreatePublishingHouseForm
 
-def genre_update(request, genre_id):
-    if request.method == 'POST':
-        obj = models.Genre.objects.get(pk=genre_id)
-        form = forms.CreateGenreForm(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='genres-list'))
-        
-    else:
-        obj = models.Genre.objects.get(pk=genre_id)
-        form = forms.CreateGenreForm(instance=obj)
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="genre_create.html", context = ctx)    
-
-def genre_delete(request, genre_id):
-    if request.method == 'POST':
-        obj = models.Genre.objects.get(pk=genre_id).delete()
-        return HttpResponseRedirect(reverse(viewname='genres-list'))
-
-    return render(request, template_name ="genre_delete.html", context = {}) 
-
-def published_create(request):
-    if request.method == 'POST':
-        form = forms.CreatePublishingHouseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='published-list'))
-        
-    else:
-        form = forms.CreatePublishingHouseForm()
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="published_create.html", context = ctx)  
-
-def published_update(request, published_id):
-    if request.method == 'POST':
-        obj = models.PublishingHouse.objects.get(pk=published_id)
-        form = forms.CreatePublishingHouseForm(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse(viewname='published-list'))
-        
-    else:
-        obj = models.PublishingHouse.objects.get(pk=published_id)
-        form = forms.CreatePublishingHouseForm(instance=obj)
-    ctx = {
-        'form' : form,
-        'is_valid':form.is_valid()
-    }
-    return render(request, template_name ="published_create.html", context = ctx)    
-
-def published_delete(request, published_id):
-    if request.method == 'POST':
-        obj = models.PublishingHouse.objects.get(pk=published_id).delete()
-        return HttpResponseRedirect(reverse(viewname='published-list'))
-
-    return render(request, template_name ="published_delete.html", context = {})     
+class PublishingHouseDeleteView(DeleteView):
+    model = models.PublishingHouse
+    success_url = reverse_lazy('publishinghouse:published-list') 

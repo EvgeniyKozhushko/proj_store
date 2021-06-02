@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Все серии</h1>
+    <ul>
+        {% for published in object_list %}
+        <li>{{ forloop.counter }} Punlishing House# {{ published.pk }} <a href ="{% url 'publishinghouse:published' published.pk %}">{{ published }}</a>
+            || <a href ="{% url 'publishinghouse:published-update' published.pk %}">Update</a>
+            || <a href ="{% url 'publishinghouse:published-delete' published.pk %}">Delete</a> </li>
+        {% endfor %}
+    </ul>
+    </body>
+    <a href="{% url 'publishinghouse:published-create' %}">Создать нового Издателя</a> <br>
+    <a href="{% url 'home' %}">На главную</a>
+</html>
