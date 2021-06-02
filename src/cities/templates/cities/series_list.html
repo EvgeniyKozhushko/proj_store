@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Series list{% endblock title %}
+{% block body %}
 <body>
     <h1>Все серии</h1>
     <ul>
@@ -18,4 +13,4 @@
     </body>
     <a href="{% url 'series:series-create' %}">Создать новую Серию</a> <br>
     <a href="{% url 'home' %}">На главную</a> <br>
-    </html>
+{% endblock body %}
