@@ -3,14 +3,27 @@
 {% block body %}
 <body>
     <h1>Все серии</h1>
-    <ul>
-        {% for series in series_list %}
-        <li>{{ forloop.counter }} Series# {{ series.pk }} <a href ="{% url 'series:series' series.pk %}">{{ series }}</a>
-            || <a href ="{% url 'series:series-update' series.pk %}">Update</a>
-            || <a href ="{% url 'series:series-delete' series.pk %}">Delete</a> </li>
-        {% endfor %}
-    </ul>
-    </body>
+    <table class="table table-hover">
+        <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for series in series_list %}
+      <tr>
+        <th scope="row"> {{ series.pk }}</th>
+        <td><a href ="{% url 'series:series' series.pk %}">{{ series }}</a></td>
+        <td><a href ="{% url 'series:series-update' series.pk %}" class='btn btn-success' >Update</a></td>
+        <td><a href ="{% url 'series:series-delete' series.pk %}" class='btn btn-warning'>Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
     <a href="{% url 'series:series-create' %}">Создать новую Серию</a> <br>
-    <a href="{% url 'home' %}">На главную</a> <br>
+    <a href="{% url 'home' %}">На главную</a>
+    
 {% endblock body %}

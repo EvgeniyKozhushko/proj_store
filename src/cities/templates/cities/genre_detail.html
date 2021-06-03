@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Detail genre{% endblock title %}
 {% block body %}
-<body>
-    <h1>Жанры</h1>
-    {{ genre }}<br>
-    ID : {{ genre.pk }} <br>
-    Description : {{ genre.genre_discription }} <br>
-</body>
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Жанр</h5>
+      <p class="card-text">    {{ genre }}<br>
+        ID : {{ genre.pk }} <br>
+        Description : {{ genre.genre_discription }} <br></p>
+      <a href="{% url 'genre:genre-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
 {% endblock body %}

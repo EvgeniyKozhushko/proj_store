@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Detail publishing house{% endblock title %}
 {% block body %}
-<body>
-    <h1>Издательства</h1>
-    {{ object }}<br>
-    ID : {{ object.pk }} <br>
-    Description : {{ object.publishing_house_discription }} <br>
-</body>
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Издательство</h5>
+      <p class="card-text">    {{ object }}<br>
+        ID : {{ object.pk }} <br>
+        Description : {{ object.publishing_house_discription }} <br></p>
+      <a href="{% url 'publishinghouse:published-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
 {% endblock body %}

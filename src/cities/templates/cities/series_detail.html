@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Detail series{% endblock title %}
 {% block body %}
-<body>
-    <h1>Серии</h1>
-    {{ series }}<br>
-    ID : {{ series.pk }} <br>
-    Description : {{ series.series_discription }} <br>
-</body>
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Серия</h5>
+      <p class="card-text">    {{ series }}<br>
+        ID : {{ series.pk }} <br>
+        Description : {{ series.series_discription }} <br></p>
+      <a href="{% url 'series:series-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
 {% endblock body %}

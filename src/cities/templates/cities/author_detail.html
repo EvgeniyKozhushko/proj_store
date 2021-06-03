@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Detail author{% endblock title %}
 {% block body %}
-
-<body>
-    <h1>Авторы</h1>
-    {{ author }}<br>
-    ID : {{ author.pk }} <br>
-    Description : {{ author.author_discription }} <br>
-</body>
-
+    <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Автор</h5>
+      <p class="card-text">    {{ author }}<br>
+        ID : {{ author.pk }} <br>
+        Description : {{ author.author_discription }} <br></p>
+      <a href="{% url 'author:author-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
 {% endblock body %}

@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Genre list{% endblock title %}
 {% block body %}
-<body>
+
     <h1>Все жанры</h1>
-    <ul>
-        {% for genre in genre_list %}
-        <li>{{ forloop.counter }} Genre# {{ genre.pk }} <a href ="{% url 'genre:genre' genre.pk %}">{{ genre }}</a>
-            || <a href ="{% url 'genre:genre-update' genre.pk %}">Update</a>
-            || <a href ="{% url 'genre:genre-delete' genre.pk %}">Delete</a> </li>
-        {% endfor %}
-    </ul>
+    <table class="table table-hover">
+        <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for genre in genre_list %}
+      <tr>
+        <th scope="row"> {{ genre.pk }}</th>
+        <td><a href ="{% url 'genre:genre' genre.pk %}">{{ genre }}</a></td>
+        <td><a href ="{% url 'genre:genre-update' genre.pk %}" class='btn btn-success' >Update</a></td>
+        <td><a href ="{% url 'genre:genre-delete' genre.pk %}" class='btn btn-warning'>Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
     <a href="{% url 'genre:genre-create' %}">Создать новый Жанр</a> <br>
     <a href="{% url 'home' %}">На главную</a>
-    </body>
+
 {% endblock body %}
