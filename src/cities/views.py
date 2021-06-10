@@ -90,3 +90,22 @@ class PublishingHouseUpdateView(UpdateView):
 class PublishingHouseDeleteView(DeleteView):
     model = models.PublishingHouse
     success_url = reverse_lazy('publishinghouse:published-list') 
+
+# Book
+class BookDetailView(DetailView):
+    model = models.Book
+
+class BookListView(ListView):
+    model = models.Book
+
+class BookCreateView(CreateView):
+    model = models.Book
+    form_class = forms.CreateBookForm
+
+class BookUpdateView(UpdateView):
+    model = models.Book
+    form_class = forms.CreateBookForm
+
+class BookDeleteView(DeleteView):
+    model = models.Book
+    success_url = reverse_lazy('book:book-list')   

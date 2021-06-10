@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+
+from django.conf import settings
 
 from cities import views as cities_views
 
@@ -25,6 +28,10 @@ urlpatterns = [
     path('genre/', include('cities.urls', namespace='genre')),
     path('series/', include('cities.urls', namespace='series')),
     path('publishinghouse/', include('cities.urls', namespace='publishinghouse')),
+    path('book/', include('cities.urls', namespace='book')),
 
     path('', cities_views.Home.as_view(), name='home'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
