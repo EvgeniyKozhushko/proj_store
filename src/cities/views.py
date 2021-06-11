@@ -8,9 +8,6 @@ from . import forms
 
 # Create your views here.
 
-# def cities_home(request):
-#     return render(request, template_name ="home.html", context = {})
-
 class Home(TemplateView):
     template_name = 'cities/home.html'
 #Author
@@ -89,23 +86,4 @@ class PublishingHouseUpdateView(UpdateView):
 
 class PublishingHouseDeleteView(DeleteView):
     model = models.PublishingHouse
-    success_url = reverse_lazy('publishinghouse:published-list') 
-
-# Book
-class BookDetailView(DetailView):
-    model = models.Book
-
-class BookListView(ListView):
-    model = models.Book
-
-class BookCreateView(CreateView):
-    model = models.Book
-    form_class = forms.CreateBookForm
-
-class BookUpdateView(UpdateView):
-    model = models.Book
-    form_class = forms.CreateBookForm
-
-class BookDeleteView(DeleteView):
-    model = models.Book
-    success_url = reverse_lazy('book:book-list')   
+    success_url = reverse_lazy('publishinghouse:published-list')

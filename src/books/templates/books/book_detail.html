@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Detail book{% endblock title %}
+{% block body %}
+<div class="card" style="width: 18rem;">
+  <img src="{{ book.picture_book.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Книга</h5>
+      <p class="card-text">    {{ book }}<br>
+        ID : {{ book.pk }} <br>
+        Автор : {{ book.book_author }} <br>
+        Серия : {{ book.book_series }} <br>
+        Жанр : {{ book.book_genre }} <br>
+        Год издания : {{ book.year_publishing }} <br>
+        Количество страниц : {{ book.number_pages }} <br>
+        Формат : {{ book.size }} <br>
+        Переплет : {{ book.tbinding }} <br>
+        ISBN : {{ book.ISBN }} <br>
+        Издательство : {{ book.publishing_house }} <br>
+        Возрастные ограничения : {{ book.age_restrictions }} <br>
+        Вес (гр) : {{ book.weight }} <br>
+        Количество в наличии (шт) : {{ book.in_stock }} <br>
+        Доступга к заказу : {{ book.available_to_order }} <br>
+        Рейтинг : {{ book.rating }} <br></p>
+      <a href="{% url 'books:book-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
+{% endblock body %}

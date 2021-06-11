@@ -10,8 +10,10 @@
         <li><a href ="{% url 'genre:genre-list' %}">Жанры</a></li>
         <li><a href ="{% url 'series:series-list' %}">Серии</a></li>
         <li><a href ="{% url 'publishinghouse:published-list' %}">Издательства</a></li>
+        <li><a href ="{% url 'books:book-list' %}">Книги</a></li>
     </ul>
-    <a href="{% url 'book:book-create' %}">Создать Книгу</a> <br>
+    <a href="{% url 'books:book-create' %}">Создать Книгу</a> <br>
+     <br>
     
 </body>
 {% endblock body %}

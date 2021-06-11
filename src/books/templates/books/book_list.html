@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Book list{% endblock title %}
+{% block body %}
+
+    <h1>Все книги</h1>
+    <table class="table table-hover">
+        <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in book_list %}
+      <tr>
+        <th scope="row"> {{ book.pk }}</th>
+        <td><a href ="{% url 'books:book' book.pk %}">{{ book }}</a></td>
+        <td><a href ="{% url 'books:book-update' book.pk %}" class='btn btn-success' >Update</a></td>
+        <td><a href ="{% url 'books:book-delete' book.pk %}" class='btn btn-warning'>Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+    <a href="{% url 'books:book-create' %}">Создать новую книгу</a> <br>
+    <a href="{% url 'home' %}">На главную</a>
+
+{% endblock body %}
