@@ -20,8 +20,3 @@ class CreatePublishingHouseForm(forms.ModelForm):
     class Meta:
         model = models.PublishingHouse
         fields = '__all__'    
-
-# class CreateBookForm(forms.ModelForm):
-#     class Meta:
-#         model = models.Book
-#         fields = '__all__'            

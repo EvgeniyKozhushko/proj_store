@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Form create author{% endblock title %}
+{% block body %}
+<body>
+    <h1>Зарегистрироваться</h1>
+    {{ is_valid }}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</body>
+{% endblock body %}

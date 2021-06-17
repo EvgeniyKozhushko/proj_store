@@ -3,6 +3,10 @@
 {% block body %}
 <body>
     <h1>Home page</h1>
+
+
+    {{ user }} <br>
+
     <a href='/admin'> Админка </a>
 
     <ul>
@@ -13,7 +17,11 @@
         <li><a href ="{% url 'books:book-list' %}">Книги</a></li>
     </ul>
     <a href="{% url 'books:book-create' %}">Создать Книгу</a> <br>
-     <br>
+    <a href="{% url 'accounts:login' %}">залогиниться</a> <br>
+    <a href="{% url 'accounts:logout' %}">свалить</a> <br>
+    <a href="{% url 'accounts:create-account' %}">Уточнить данные</a> <br>
+    <a href="{% url 'accounts:create' %}">новый ЮЗЕР!</a> <br>
+    
     
 </body>
 {% endblock body %}

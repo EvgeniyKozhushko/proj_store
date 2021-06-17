@@ -7,7 +7,12 @@
       <h5 class="card-title">Книга</h5>
       <p class="card-text">    {{ book }}<br>
         ID : {{ book.pk }} <br>
-        Автор : {{ book.book_author }} <br>
+        <b>Автор</b> : 
+        <ul>
+          {% for dim_1 in book.book_author.all %}
+          <li>{{ dim_1.dim_1 }}</li>
+          {% endfor %}
+        </ul>    
         Серия : {{ book.book_series }} <br>
         Жанр : {{ book.book_genre }} <br>
         Год издания : {{ book.year_publishing }} <br>
@@ -19,7 +24,11 @@
         Возрастные ограничения : {{ book.age_restrictions }} <br>
         Вес (гр) : {{ book.weight }} <br>
         Количество в наличии (шт) : {{ book.in_stock }} <br>
-        Доступга к заказу : {{ book.available_to_order }} <br>
+        Доступга к заказу : {% if book.available_to_order %} 
+          Есть на складе
+        {% else %}
+          Нет в наличии
+        {% endif %}        <br>
         Рейтинг : {{ book.rating }} <br></p>
       <a href="{% url 'books:book-list' %}" class="btn btn-primary">К списку</a>
     </div>

@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from cities import views as cities_views
-from books import views as books_views
+#from books import urls, views as books_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('series/', include('cities.urls', namespace='series')),
     path('publishinghouse/', include('cities.urls', namespace='publishinghouse')),
     path('books/', include('books.urls', namespace='books')),
+    path('accounts/', include('users.urls', namespace='accounts')),
 
     path('', cities_views.Home.as_view(), name='home'),
 ]

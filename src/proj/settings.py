@@ -28,7 +28,6 @@ DEBUG = local_settings.DEBUG
 
 ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'cities',
     'books',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +133,5 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/'
