@@ -7,26 +7,14 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from . import models
 from . import forms
 
-# class CustomerCreateView(UserCreationForm):
-#     model = models.Customer
-#     form_class = forms.CreateCustomerForm
-    # login_url = 'accounts:login'
-    # permission_required = 'books.add_book'
-
-# class MyUserCreateView(CreateView):
-#     model = models.MyUser
-#     form_class = forms.CreateMyUserForm
-
-
-class EmployeeCreateView(CreateView):
+class EmployeeCreateView(CreateView):    
     model = models.Employee
     form_class = forms.CreateEmployeeForm
+    def form_valid(self, form):
+        form.instance.user = self.request.user     
 
-    def get_object(self, queryset=None):
-        username = models.User.objects.get(self.request.user.username)
-        return username
+        return super().form_valid(form)
         
-
 class UserCreateView(CreateView):
     model = User
     success_url = "/accounts/login/"

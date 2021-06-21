@@ -6,7 +6,7 @@ from . import models
 class CreateEmployeeForm(forms.ModelForm):
     class Meta:
         model = models.Employee
-        fields = ('phone_number', 'country')    
+        fields = ('phone_number', 'country', 'city', 'index', 'adress1', 'adress1', 'discription')    
 
 class UserForm(forms.ModelForm):
     class Meta:

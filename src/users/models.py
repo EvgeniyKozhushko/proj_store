@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     phone_number = models.CharField(verbose_name="Номер телефона", default='+375(__)-___-__-__', max_length=30)
-    department = models.CharField(max_length=100)
+    department = models.CharField(max_length=100) #delete field
     country = models.CharField(verbose_name="Страна", default='Belarus', max_length=50, blank=True, null=True)
     city = models.CharField(verbose_name="Город", max_length=50, blank=True, null=True)
     index = models.CharField(verbose_name="Индекс", max_length=12, blank=True, null=True)
@@ -20,35 +20,6 @@ class Employee(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class MyUser(User):
-#     phone_number = models.CharField(verbose_name="Номер телефона", default='+375(__)-___-__-__', max_length=30)
-#     discription = models.TextField(verbose_name='Дополнительная информация', max_length=200, blank=True, null=True)
-    
-#     def __str__(self) -> str:
-#         return f"{self.username}"
-
-#     def get_absolute_url(self):
-#         return reverse('home')
-
-
 
 # class Customer(models.Model):
 #     user = models.OneToOneField(User,  primary_key=True, related_name='customer', on_delete=models.CASCADE)
@@ -74,7 +45,22 @@ class Employee(models.Model):
 #         return reverse('home')
 #     class Meta:
 #         verbose_name = "Покупатель"
-#         verbose_name_plural = "Покупатели"
+#         verbose_name_plural = "Покупатели"        
+
+
+# class MyUser(User):
+#     phone_number = models.CharField(verbose_name="Номер телефона", default='+375(__)-___-__-__', max_length=30)
+#     discription = models.TextField(verbose_name='Дополнительная информация', max_length=200, blank=True, null=True)
+    
+#     def __str__(self) -> str:
+#         return f"{self.username}"
+
+#     def get_absolute_url(self):
+#         return reverse('home')
+
+
+
+
 
 # class Staff(models.Model):
 #     login = models.CharField(verbose_name="Логин", max_length=30)
