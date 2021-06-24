@@ -13,23 +13,23 @@
           <li>{{ dim_1.dim_1 }}</li>
           {% endfor %}
         </ul>    
-        Серия : {{ book.book_series }} <br>
-        Жанр : {{ book.book_genre }} <br>
-        Год издания : {{ book.year_publishing }} <br>
-        Количество страниц : {{ book.number_pages }} <br>
-        Формат : {{ book.size }} <br>
-        Переплет : {{ book.tbinding }} <br>
-        ISBN : {{ book.ISBN }} <br>
-        Издательство : {{ book.publishing_house }} <br>
-        Возрастные ограничения : {{ book.age_restrictions }} <br>
-        Вес (гр) : {{ book.weight }} <br>
-        Количество в наличии (шт) : {{ book.in_stock }} <br>
-        Доступга к заказу : {% if book.available_to_order %} 
+        <b>Серия</b> : {{ book.book_series }} <br>
+        <b>Жанр</b> : {{ book.book_genre }} <br>
+        <b>Год издания</b> : {{ book.year_publishing }} <br>
+        <b>Количество страниц</b> : {{ book.number_pages }} <br>
+        <b>Формат </b>: {{ book.size }} <br>
+        <b>Переплет </b>: {{ book.tbinding }} <br>
+        <b>ISBN</b> : {{ book.ISBN }} <br>
+        <b>Издательство</b> : {{ book.publishing_house }} <br>
+        <b>Возрастные ограничения</b> : {{ book.age_restrictions }} <br>
+        <b>Вес (гр)</b> : {{ book.weight }} <br>
+        <b>Количество в наличии (шт)</b>  : {{ book.in_stock }} <br>
+        <b>Доступга к заказу</b> : {% if book.available_to_order %} 
           Есть на складе
         {% else %}
           Нет в наличии
         {% endif %}        <br>
-        Рейтинг : {{ book.rating }} <br></p>
+        <b>Рейтинг</b> : {{ book.rating }} <br></p>
       <a href="{% url 'books:book-list' %}" class="btn btn-primary">К списку</a>
     </div>
   </div>

@@ -6,7 +6,7 @@ from django.urls import reverse
 class Author(models.Model):
     dim_1 = models.CharField(verbose_name='Выбор автора', max_length=60)
     author_discription = models.TextField(verbose_name= 'Описание', blank=True, null=True)
-    picture_author = models.ImageField(verbose_name="Картинка", upload_to = 'author/%Y/%m/%d/')
+    picture_author = models.ImageField(verbose_name="Картинка", upload_to = 'author/%Y/%m/%d/',blank=True, null=True)
 
     def __str__(self) -> str:
         return self.dim_1
@@ -20,7 +20,6 @@ class Author(models.Model):
 class Series(models.Model):
     dim_2 = models.CharField(verbose_name='Выбор серии', max_length=60)
     series_discription = models.TextField(verbose_name= 'Описание', blank=True, null=True)
-    picture_series = models.ImageField(verbose_name="Картинка", upload_to = 'author/%Y/%m/%d/')
 
     def __str__(self) -> str:
         return self.dim_2
@@ -33,8 +32,7 @@ class Series(models.Model):
 class Genre(models.Model):
     dim_3 = models.CharField(verbose_name='Выбор жанра', max_length=60)
     genre_discription = models.TextField(verbose_name= 'Описание', blank=True, null=True)
-    picture_genre = models.ImageField(verbose_name="Картинка", upload_to = 'author/%Y/%m/%d/')
-
+    
     def __str__(self) -> str:
         return self.dim_3
 
@@ -46,8 +44,7 @@ class Genre(models.Model):
 class PublishingHouse(models.Model):
     dim_4 = models.CharField(verbose_name='Выбор издателя', max_length=60)
     publishing_house_discription = models.TextField(verbose_name= 'Описание', blank=True, null=True)
-    picture_publishing_house = models.ImageField(verbose_name="Картинка", upload_to = 'author/%Y/%m/%d/')
-
+    
     def __str__(self) -> str:
         return self.dim_4
 

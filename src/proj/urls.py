@@ -19,21 +19,21 @@ from django.conf.urls.static import static
 
 from django.conf import settings
 
-from cities import views as cities_views
+from catalogs import views as catalogs_views
 #from books import urls, views as books_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('author/', include('cities.urls', namespace='author')),
-    path('genre/', include('cities.urls', namespace='genre')),
-    path('series/', include('cities.urls', namespace='series')),
-    path('publishinghouse/', include('cities.urls', namespace='publishinghouse')),
+    path('author/', include('catalogs.urls', namespace='author')),
+    path('genre/', include('catalogs.urls', namespace='genre')),
+    path('series/', include('catalogs.urls', namespace='series')),
+    path('publishinghouse/', include('catalogs.urls', namespace='publishinghouse')),
     path('books/', include('books.urls', namespace='books')),
     path('accounts/', include('users.urls', namespace='accounts')),
     path('carts/', include('carts.urls', namespace='carts')),
 
-    path('', cities_views.Home.as_view(), name='home'),
+    path('', catalogs_views.Home.as_view(), name='home'),
 ]
 
 if settings.DEBUG:

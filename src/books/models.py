@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from cities.models import Author, Genre, Series, PublishingHouse
+from catalogs.models import Author, Genre, Series, PublishingHouse
 
 # Create your models here.
 

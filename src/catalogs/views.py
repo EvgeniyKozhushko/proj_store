@@ -9,7 +9,8 @@ from . import forms
 # Create your views here.
 
 class Home(TemplateView):
-    template_name = 'cities/home.html'
+    template_name = 'catalogs/home.html'
+    
 #Author
 class AuthorDetailView(DetailView):
     model = models.Author
