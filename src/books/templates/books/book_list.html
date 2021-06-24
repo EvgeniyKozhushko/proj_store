@@ -10,6 +10,7 @@
         <th scope="col">Detail</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
+        <th scope="col">Add</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td><a href ="{% url 'books:book' book.pk %}">{{ book }}</a></td>
         <td><a href ="{% url 'books:book-update' book.pk %}" class='btn btn-success' >Update</a></td>
         <td><a href ="{% url 'books:book-delete' book.pk %}" class='btn btn-warning'>Delete</a></td>
+        <td><a href ="{% url 'carts:cart-edit' %}?book_id={{ book.pk }}" class='btn btn-primary'>Add to Cart</a></td>
       </tr>
       {% endfor %}
     </tbody>

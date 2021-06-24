@@ -3,11 +3,12 @@ from django.contrib import admin
 # Register your models here.
 from . import models
 
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'user']  
 
-admin.site.register(models.Employee)
+admin.site.register(models.Employee, EmployeeAdmin)
 
-# class CustomerAdmin(admin.ModelAdmin):
-#     list_display = ['pk', 'login', 'email']  
+
 
 # admin.site.register(models.Customer, CustomerAdmin)
 

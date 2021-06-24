@@ -21,6 +21,10 @@ class Employee(models.Model):
     def get_absolute_url(self):
         return reverse('home')
 
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"     
+
 # class Customer(models.Model):
 #     user = models.OneToOneField(User,  primary_key=True, related_name='customer', on_delete=models.CASCADE)
 #     login = models.CharField(verbose_name="Логин", max_length=30, unique=True)
