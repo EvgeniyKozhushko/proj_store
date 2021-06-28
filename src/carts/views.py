@@ -1,5 +1,9 @@
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views import View
+from django.http import HttpResponseRedirect
 from . import models
+from django.urls import reverse, reverse_lazy
+
 from books import models as books_models
 
 # Create your views here.
@@ -24,18 +28,42 @@ class CartView(DetailView):
             cart = cart,
             book = book,
             defaults={
-                'unit_price': book.book_price
+                'unit_price': str(book.book_price)
             },
             )
             if not book_created:
                 q = book_in_cart.quantity + 1
                 book_in_cart.quantity = q
                 book_in_cart.save()
-                # book_in_cart.unit_prive = book_in_cart.book.book_price * q
-                
-            # else:
-            #     book_in_cart.unit_price = book.book_price
-
             
-
         return cart
+
+class DeleteGoodInCartView(DeleteView):
+    model = models.BooksInCart
+    success_url = reverse_lazy('carts:cart-edit')
+
+class CartUpdate(View):
+    def post(self, request):
+        action = request.POST.get('submit')
+        cart_id = self.request.session.get('cart_id')
+        cart, created = models.Cart.objects.get_or_create(
+                pk = cart_id,
+                defaults={},
+            )
+        if created:
+            self.request.session['cart_id'] = cart.pk
+        goods = cart.goods.all()   
+        if goods: 
+            for key, value in request.POST.items():
+                if 'qauntityforgood_' in key:
+                    pk = key.split('_')[1]
+                    good = goods.get(pk=pk)
+                    good.quantity = int(value)
+                    good.save()
+
+        if action == 'save_cart':    
+            return HttpResponseRedirect(reverse_lazy('carts:cart-edit'))
+        elif action == 'create_order':
+            return HttpResponseRedirect(reverse_lazy('orders:create-order'))
+        else:
+            return HttpResponseRedirect(reverse_lazy('carts:cart-edit'))

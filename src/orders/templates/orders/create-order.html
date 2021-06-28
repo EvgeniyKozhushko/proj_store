@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Book list{% endblock title %}
 {% block body %}
 
@@ -42,5 +43,12 @@
 
 <button type="submit" class="btn btn-warning" name="submit" value="save_cart">Сохранить корзину</button>
 <button type="submit" class="btn btn-success" name="submit" value="create_order">Сохранить и заказать</button>
+</form>
+
+<h1>Информация о Вашем заказе</h1>
+<form action="{% url 'orders:create-order' %}" method="post">
+{{ form|crispy}}
+{% csrf_token %}
+<button type="submit" class="btn btn-success" >Заказать</button>
 </form>
 {% endblock body %}

@@ -32,6 +32,7 @@ urlpatterns = [
     path('books/', include('books.urls', namespace='books')),
     path('accounts/', include('users.urls', namespace='accounts')),
     path('carts/', include('carts.urls', namespace='carts')),
+    path('orders/', include('orders.urls', namespace='orders')),
 
     path('', catalogs_views.Home.as_view(), name='home'),
 ]
