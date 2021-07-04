@@ -29,7 +29,7 @@
           </div>
         </td>
       <td>{{ good_in_cart.total_price }}</td>
-      <td><form action="{% url 'carts:cart-delete-good' good_in_cart.pk %}" method="post">{% csrf_token %} <button type="submit" class='btn btn-sm btn-danger'> Удалить </button></form></td>
+      <td><a href="{% url 'carts:cart-delete-good' good_in_cart.pk %}" class='btn btn-sm btn-danger'> Удалить </a></td>
     </tr>
 
 {% endfor %}
@@ -40,7 +40,7 @@
 </tr>
 
 </table>
-
+{% csrf_token %}
 <button type="submit" class="btn btn-warning" name="submit" value="save_cart">Сохранить корзину</button>
 <button type="submit" class="btn btn-success" name="submit" value="create_order">Сохранить и заказать</button>
 </form>

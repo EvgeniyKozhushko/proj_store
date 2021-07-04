@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import DetailView, UpdateView, DeleteView, RedirectView
 from django.views import View
 from django.http import HttpResponseRedirect
 from . import models
@@ -38,9 +38,15 @@ class CartView(DetailView):
             
         return cart
 
-class DeleteGoodInCartView(DeleteView):
+class DeleteGoodInCartView(RedirectView):
     model = models.BooksInCart
     success_url = reverse_lazy('carts:cart-edit')
+
+    def get_redirect_url(self, *args, **kwargs):
+        #obj_pk_todelete
+        print(self.kwargs)
+        self.model.objects.get(pk=self.kwargs.get('pk')).delete()
+        return self.success_url
 
 class CartUpdate(View):
     def post(self, request):

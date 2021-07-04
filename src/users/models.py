@@ -1,13 +1,18 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+
+from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import User
 
 # Create your models here.
 
+User = get_user_model()
+
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, related_name='customer')
     phone_number = models.CharField(verbose_name="Номер телефона", default='+375(__)-___-__-__', max_length=30)
-    #добавить группу
+    #user_group = models.ManyToManyField(Group, default='Customers')
     country = models.CharField(verbose_name="Страна", default='Belarus', max_length=50, blank=True, null=True)
     city = models.CharField(verbose_name="Город", max_length=50, blank=True, null=True)
     index = models.CharField(verbose_name="Индекс", max_length=12, blank=True, null=True)

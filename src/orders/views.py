@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView
+from django.contrib import messages
 
 from orders import models
 from . import forms
@@ -9,13 +10,11 @@ from . import forms
 class CreateOrderView(FormView):
     form_class =  forms.OrderCreateForm
     template_name = 'orders/create-order.html'
-    success_url = reverse_lazy('home')
-    # def get_initial(self):
-    #     if self.request.user.is_anonymous:
-    #         return {}
-    #     tel = self.request.user.phone_number    
-    #     # tel = self.request.user.profile.phone_number
-    #     return {'contact_info': tel}
+    def get_initial(self):
+        if self.request.user.is_anonymous:
+            return {}
+        tel = self.request.user.customer.phone_number    
+        return {'contact_info': tel}
 
     def form_valid(self, form):
         cart_id = self.request.session.get('cart_id')
@@ -30,8 +29,10 @@ class CreateOrderView(FormView):
             cart = cart,
             contact_info = ci
         )
-        self.request.session.delete('cart_id')
-        return super().form_valid(form)
+        del self.request.session['cart_id']
+        messages.add_message(self.request, messages.INFO, f"Спасибо за закак {str(self.request.user)}. Ваш заказ принят!")
+        return HttpResponseRedirect(reverse_lazy('home'))
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_id = self.request.session.get('cart_id')

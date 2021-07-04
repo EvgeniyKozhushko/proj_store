@@ -8,6 +8,10 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Employee, EmployeeAdmin)
 
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'user', 'phone_number']  
+
+admin.site.register(models.Customer, CustomerAdmin)
 
 
 # admin.site.register(models.Customer, CustomerAdmin)
