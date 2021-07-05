@@ -4,56 +4,13 @@
 
     <h1>Все книги</h1>
 
+    <h1>Оставь надежду!!!</h1>
+
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        {% for book in book_list %}
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="{{ book.picture_book.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Книга</h5>
-              <p class="card-text">    {{ book }}<br>
-                ID : {{ book.pk }} <br>
-                <b>Автор</b> : 
-                <ul>
-                  {% for dim_1 in book.book_author.all %}
-                  <li>{{ dim_1.dim_1 }}</li>
-                  {% endfor %}
-                </ul>    
-                <b>Серия</b> : {{ book.book_series }} <br>
-                <b>Жанр</b> : {{ book.book_genre }} <br>
-                <b>Год издания</b> : {{ book.year_publishing }} <br>
-                <b>Количество страниц</b> : {{ book.number_pages }} <br>
-                <b>Формат </b>: {{ book.size }} <br>
-                <b>Переплет </b>: {{ book.tbinding }} <br>
-                <b>ISBN</b> : {{ book.ISBN }} <br>
-                <b>Издательство</b> : {{ book.publishing_house }} <br>
-                <b>Возрастные ограничения</b> : {{ book.age_restrictions }} <br>
-                <b>Вес (гр)</b> : {{ book.weight }} <br>
-                <b>Количество в наличии (шт)</b>  : {{ book.in_stock }} <br>
-                <b>Доступга к заказу</b> : {% if book.available_to_order %} 
-                  Есть на складе
-                {% else %}
-                  Нет в наличии
-                {% endif %}        <br>
-                <b>Рейтинг</b> : {{ book.rating }} <br></p>
-
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href ="{% url 'carts:cart-edit' %}?book_id={{ book.pk }}" class='btn btn-primary'>Add to Cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {% endfor %}
-
-
-{% for book in book_list %}
+<!-- {% for book in book_list %}
 
     <div class="card" style="width: 18rem;">
       <img src="{{ book.picture_book.url }}" class="card-img-top" alt="...">
@@ -88,7 +45,10 @@
         </div>
       </div>
 
-    {% endfor %}
+    {% endfor %} -->
+    <a href="{% url 'books:book-create' %}">Создать новую книгу</a><br>
+    <a href="{% url 'home' %}">На главную</a><br>
+
 
     <table class="table table-hover">
         <thead>
@@ -113,6 +73,8 @@
     </tbody>
     </table>
 
+
+<br>
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       {% if page_obj.has_previous %}
@@ -128,5 +90,7 @@
       {% endif %}
     </ul>
   </nav>
+
+
 
 {% endblock body %}

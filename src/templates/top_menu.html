@@ -1,17 +1,30 @@
+{% load my_tags %}
+
 <ul class="navbar-nav me-auto mb-2 mb-md-0">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{% url 'author:author-list' %}">Авторы</a>
+      {% if not user.is_active %}
+      <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
     </li>
+    {% endif %}
     <li class="nav-item">
-      <a class="nav-link active" href="{% url 'genre:genre-list' %}">Жанры</a>
+      <a class="nav-link active" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
     </li>
+    {% if user.is_active %}
     <li class="nav-item">
-      <a class="nav-link active" href="{% url 'series:series-list' %}" tabindex="-1" aria-disabled="true">Серии</a>
+      <a class="nav-link active" href="{% url 'accounts:logout' %}" tabindex="-1" aria-disabled="true">Выход</a>
     </li>
+    {% endif %}
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{% url 'publishinghouse:published-list' %}">Издательства</a>
-    </li>
-    <li class="nav-item">
+      {% if user.is_superuser %}
       <a class="nav-link" aria-current="page" href="/admin">Админка</a>
+      {% endif %}
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Один доллар США к Белорусскому рублю {% currency_rate %} BYN</a>
+    </li>
+    <li class="nav-item">
+      {% if user.is_active %}
+      <a class="nav-link " aria-current="page" href="№">Добро пожаловать на сайт, {{ user }} !</a>
+      {% endif %}
     </li>
 </ul>

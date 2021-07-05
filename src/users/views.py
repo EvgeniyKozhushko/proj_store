@@ -24,7 +24,7 @@ class RegisterView(FormView):
         user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
         customer = models.Customer.objects.create(user=user, phone_number=phone_number)
         #customer.save()
-        login(self.request, user)
+        login(self.request, user) # проверить автологин
         return super().form_valid(form)
 
 

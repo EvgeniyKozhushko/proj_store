@@ -64,7 +64,7 @@
                 </div>
                 {% endfor %}
            {% endif %}
-         Один доллар США к Белорусскому рублю {% currency_rate %} BYN
+         
     {% block body %}Default body{% endblock body %}
     </div>
     </main>
@@ -72,10 +72,14 @@
     <footer class="footer mt-auto py-3 bg-light">
       <div class="container">
         <span class="text-muted">Place sticky footer content here.</span>
+        {% if user.is_staff %}
+        <a href="{% url 'crew-page' %}">Для персонала</a>
+        {% endif %}
       </div>
     </footer>
-
+       
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  
     {% block custom_scripts %}{% endblock custom_scripts %}
 </body>
 </html>

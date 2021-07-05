@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock title %}
+{% block body %}
+<body>
+    <h1>Home page books</h1>
+    <h1>Новая главная</h1>
+
+    {{ user }} <br>
+
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  
+          {% for book in book_list %}
+  
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="{{ book.picture_book.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Книга</h5>
+                <p class="card-text">    {{ book }}<br>
+                  ID : {{ book.pk }} <br>
+                  <b>Автор</b> : 
+                  <ul>
+                    {% for dim_1 in book.book_author.all %}
+                    <li>{{ dim_1.dim_1 }}</li>
+                    {% endfor %}
+                  </ul>    
+                  <b>Серия</b> : {{ book.book_series }} <br>
+                  <b>Жанр</b> : {{ book.book_genre }} <br>
+                  <b>Год издания</b> : {{ book.year_publishing }} <br>
+                  <b>Количество страниц</b> : {{ book.number_pages }} <br>
+                  <b>Формат </b>: {{ book.size }} <br>
+                  <b>Переплет </b>: {{ book.tbinding }} <br>
+                  <b>ISBN</b> : {{ book.ISBN }} <br>
+                  <b>Издательство</b> : {{ book.publishing_house }} <br>
+                  <b>Возрастные ограничения</b> : {{ book.age_restrictions }} <br>
+                  <b>Вес (гр)</b> : {{ book.weight }} <br>
+                  <b>Количество в наличии (шт)</b>  : {{ book.in_stock }} <br>
+                  <b>Доступга к заказу</b> : {% if book.available_to_order %} 
+                    Есть на складе
+                  {% else %}
+                    Нет в наличии
+                  {% endif %}        <br>
+                  <b>Рейтинг</b> : {{ book.rating }} <br></p>
+  
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href ="{% url 'carts:cart-edit' %}?book_id={{ book.pk }}" class='btn btn-primary'>Add to Cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          {% endfor %}
+
+
+    <!-- <a href='/admin'> Админка </a> -->
+
+    <ul>
+        <li><a href ="{% url 'author:author-list' %}">Авторы</a></li>
+        <li><a href ="{% url 'genre:genre-list' %}">Жанры</a></li>
+        <li><a href ="{% url 'series:series-list' %}">Серии</a></li>
+        <li><a href ="{% url 'publishinghouse:published-list' %}">Издательства</a></li>
+        <li><a href ="{% url 'books:book-list' %}">Книги</a></li>
+    </ul>
+    <!-- <a href="{% url 'books:book-create' %}">Создать Книгу</a> <br>
+    <a href="{% url 'accounts:login' %}">залогиниться</a> <br> -->
+    <!-- <a href="{% url 'accounts:logout' %}">свалить</a> <br> -->
+    <a href="{% url 'accounts:create-account' %}">Уточнить данные</a> <br>
+    <!-- <a href="{% url 'accounts:register' %}">новый ЮЗЕР!</a> <br> -->
+    
+    
+</body>
+{% endblock body %}

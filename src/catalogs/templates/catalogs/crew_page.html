@@ -4,10 +4,11 @@
 <body>
     <h1>Home page</h1>
 
+    <h1>Добро пожаловать на страницу для персонала</h1>
 
     {{ user }} <br>
 
-    <a href="{% url 'books:home-books' %}">Новая главная</a><br>
+
 
     <a href='/admin'> Админка </a>
 
@@ -16,7 +17,7 @@
         <li><a href ="{% url 'genre:genre-list' %}">Жанры</a></li>
         <li><a href ="{% url 'series:series-list' %}">Серии</a></li>
         <li><a href ="{% url 'publishinghouse:published-list' %}">Издательства</a></li>
-        <li><a href ="{% url 'books:book-list' %}">Книги</a></li>
+        <li><a href ="{% url 'books:book-list-crew' %}">Книги</a></li>
     </ul>
     <a href="{% url 'books:book-create' %}">Создать Книгу</a> <br>
     <a href="{% url 'accounts:login' %}">залогиниться</a> <br>

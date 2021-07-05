@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from catalogs import views as catalogs_views
+from books import views as books_views
 #from books import urls, views as books_views
 
 urlpatterns = [
@@ -34,7 +35,8 @@ urlpatterns = [
     path('carts/', include('carts.urls', namespace='carts')),
     path('orders/', include('orders.urls', namespace='orders')),
 
-    path('', catalogs_views.Home.as_view(), name='home'),
+    path('', books_views.HomeBookListView.as_view(), name='home'),
+    path('catalogs/', catalogs_views.CrewPage.as_view(), name='crew-page'),
 ]
 
 if settings.DEBUG:

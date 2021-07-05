@@ -12,15 +12,12 @@ from . import forms
 
 # Create your views here.
 
-class Home(TemplateView):
-    template_name = 'cities/home.html'
-
 class BookDetailView(DetailView):
     model = models.Book
 class BookListView(ListView):
     model = models.Book
-    paginate_by = 1
-    
+    paginate_by = 3
+
     def get_queryset(self):
         qs = super().get_queryset()
         filter = self.request.GET.get('filter')
@@ -30,6 +27,36 @@ class BookListView(ListView):
             # qs.filter(title_book__icontains=q)
             qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
         return qs
+
+
+class CrewBookListView(ListView):
+    model = models.Book
+    template_name = 'books/crewbook_list.html'
+    paginate_by = 1
+    def get_queryset(self):
+        qs = super().get_queryset()
+        filter = self.request.GET.get('filter')
+        q = self.request.GET.get('q')
+        print(q)
+        if q:
+            # qs.filter(title_book__icontains=q)
+            qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
+        return qs        
+
+class HomeBookListView(ListView):
+    model = models.Book
+    template_name = 'books/home_books.html'
+    paginate_by = 3
+    def get_queryset(self):
+        qs = super().get_queryset()
+        filter = self.request.GET.get('filter')
+        q = self.request.GET.get('q')
+        print(q)
+        if q:
+            # qs.filter(title_book__icontains=q)
+            qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
+        return qs     
+
 
 class BookCreateView(PermissionRequiredMixin, CreateView):
     model = models.Book

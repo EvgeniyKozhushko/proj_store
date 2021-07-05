@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 from . import models
 from . import forms
@@ -10,7 +11,10 @@ from . import forms
 
 class Home(TemplateView):
     template_name = 'catalogs/home.html'
-    
+
+class CrewPage(TemplateView):
+    template_name = 'catalogs/crew_page.html'
+  
 #Author
 class AuthorDetailView(DetailView):
     model = models.Author
