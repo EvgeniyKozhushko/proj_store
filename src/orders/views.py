@@ -1,7 +1,8 @@
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView
 from django.contrib import messages
+from django.views.generic.list import ListView
 
 from orders import models
 from . import forms
@@ -43,3 +44,6 @@ class CreateOrderView(FormView):
         context['object'] = cart
 
         return context
+
+class ListOrderView(ListView):
+    model = models.Order

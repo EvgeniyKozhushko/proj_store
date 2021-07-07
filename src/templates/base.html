@@ -45,7 +45,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
               {% include './top_menu.html' %}
-              <form form action="{% url 'books:book-list' %}" class="d-flex">
+              <form form action="{% url 'books:home-books' %}" class="d-flex">
                 <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
               </form>

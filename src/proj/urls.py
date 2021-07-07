@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/', include('users.urls', namespace='accounts')),
     path('carts/', include('carts.urls', namespace='carts')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('comments/', include('comments.urls', namespace='comments')),
 
     path('', books_views.HomeBookListView.as_view(), name='home'),
     path('catalogs/', catalogs_views.CrewPage.as_view(), name='crew-page'),

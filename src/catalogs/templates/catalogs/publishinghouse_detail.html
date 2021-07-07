@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load template_tags %}
 {% block title %}Detail publishing house{% endblock title %}
 {% block body %}
 <div class="card" style="width: 18rem;">
@@ -11,4 +12,5 @@
       <a href="{% url 'publishinghouse:published-list' %}" class="btn btn-primary">К списку</a>
     </div>
   </div>
+  {% show_comments %}
 {% endblock body %}
