@@ -46,7 +46,7 @@ class CrewBookListView(ListView):
 class HomeBookListView(ListView):
     model = models.Book
     template_name = 'books/home_books.html'
-    paginate_by = 3
+    paginate_by = 2
     def get_queryset(self):
         qs = super().get_queryset()
         filter = self.request.GET.get('filter')

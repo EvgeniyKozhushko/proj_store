@@ -23,9 +23,6 @@ class Cart(models.Model):
             total_price += good.total_price
         return total_price
 
-    # def __str__(self):
-    #     return super().__str__()
-
 class BooksInCart(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, verbose_name='Cart', related_name='goods')
     book = models.ForeignKey('books.Book', on_delete=models.PROTECT, verbose_name='Book')

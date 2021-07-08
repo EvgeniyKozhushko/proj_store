@@ -14,12 +14,18 @@ class CartView(DetailView):
     def get_object(self, queryset=None):
         # get cart
         cart_id = self.request.session.get('cart_id')
+        customer = self.request.user
+        print(customer)
+        if customer.is_anonymous:
+            customer = None
         cart, created = models.Cart.objects.get_or_create(
-            pk = cart_id,
-            defaults={},
-        )
+                pk = cart_id,
+                customer=customer,
+                defaults={},            
+            )
         if created:
             self.request.session['cart_id'] = cart.pk
+            
         # get book_in_cart
         book_id = self.request.GET.get('book_id')
         if book_id:
@@ -52,9 +58,13 @@ class CartUpdate(View):
     def post(self, request):
         action = request.POST.get('submit')
         cart_id = self.request.session.get('cart_id')
+        customer = self.request.user
+        if customer.is_anonymous:
+            customer = None
         cart, created = models.Cart.objects.get_or_create(
                 pk = cart_id,
-                defaults={},
+                customer=customer,
+                defaults={},                
             )
         if created:
             self.request.session['cart_id'] = cart.pk

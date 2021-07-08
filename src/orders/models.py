@@ -5,9 +5,6 @@ from carts.models import Cart
 
 # Create your models here.
 
-# class StatusOrder(models.Model):
-#     status = models.CharField(verbose_name='Выбрать статус заказа', max_length=20, default='new', blank=True, null=True)
-
 class Order(models.Model):
     cart = ForeignKey(Cart, on_delete=models.PROTECT, verbose_name="Заказ")
     status_order = models.CharField(
