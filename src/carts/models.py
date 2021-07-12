@@ -6,7 +6,6 @@ from django.views.generic.edit import ProcessFormView
 # Create your models here.
 
 from books.models import Book
-from users.models import Employee
 
 User = get_user_model()
 

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Genre list{% endblock title %}
+{% block body %}
+
+    <h1>Все юзеры</h1>
+    <table class="table table-hover">
+        <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customer_list %}
+      <tr>
+        <th scope="row"> {{ customer.pk }}</th>
+        {%if customer.user.username == user.username%}
+        <td><a href ="{% url 'accounts:detail-account' customer.pk %}">{{ customer }}</a></td> 
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+
+    <a href="{% url 'home' %}">На главную</a>
+
+{% endblock body %}

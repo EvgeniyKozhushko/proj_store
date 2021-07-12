@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load template_tags %}
+{% block title %}Detail order{% endblock title %}
+{% block body %}
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Детали заказа</h5>
+      <p class="card-text">    {{ order }}<br>
+        <b>ID</b> : {{ order.pk }} <br>
+        <b>Корзина</b> : {{ order.cart.pk }}<br>
+             
+
+        <b>Книги</b> : 
+        <ul>
+          {% for dim_1 in book.book_author.all %}
+          <li>{{ dim_1.dim_1 }}</li>
+          {% endfor %}
+        </ul>   
+
+        <b>Статус заказа</b> : {{ order.status_order }} <br>
+        <b>Контактные данные</b> : {{ order.contact_info }} <br>
+        <b>Дата создания</b> : {{ order.created }} <br>
+    </p>
+      <a href="{% url 'author:author-list' %}" class="btn btn-primary">К списку</a>
+    </div>
+  </div>
+  {% show_comments %}
+
+  {{book.pk}}
+
+{% endblock body %}

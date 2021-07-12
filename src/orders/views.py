@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView, UpdateView
+from django.views.generic import FormView, UpdateView, DetailView
 from django.contrib import messages
 from django.views.generic.list import ListView
 
@@ -47,3 +47,10 @@ class CreateOrderView(FormView):
 
 class ListOrderView(ListView):
     model = models.Order
+
+class DetailOrderView(DetailView):
+    model = models.Order    
+
+class UpdateOrderView(UpdateView):
+    model = models.Order
+    form_class = forms.OrderUpdateForm

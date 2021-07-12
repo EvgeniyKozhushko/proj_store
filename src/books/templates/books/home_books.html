@@ -54,20 +54,10 @@
           {% endfor %}
 
 
-    <!-- <a href='/admin'> Админка </a> -->
-<!-- 
-    <ul>
-        <li><a href ="{% url 'author:author-list' %}">Авторы</a></li>
-        <li><a href ="{% url 'genre:genre-list' %}">Жанры</a></li>
-        <li><a href ="{% url 'series:series-list' %}">Серии</a></li>
-        <li><a href ="{% url 'publishinghouse:published-list' %}">Издательства</a></li>
-        <li><a href ="{% url 'books:book-list' %}">Книги</a></li> -->
-    </ul>
-    <!-- <a href="{% url 'books:book-create' %}">Создать Книгу</a> <br>
-    <a href="{% url 'accounts:login' %}">залогиниться</a> <br> -->
-    <!-- <a href="{% url 'accounts:logout' %}">свалить</a> <br> -->
-    <a href="{% url 'accounts:create-account' %}">Уточнить данные</a> <br>
-    <!-- <a href="{% url 'accounts:register' %}">новый ЮЗЕР!</a> <br> -->
+          
+
+          <a href="{% url 'accounts:customer-list' %}">Все юзеры</a>
+
 
     <a href="{% url 'orders:list-order' %}">Все заказы</a>
     

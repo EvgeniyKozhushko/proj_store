@@ -28,27 +28,38 @@ class RegisterView(FormView):
         return super().form_valid(form)
 
 
+class CustomerUpdateView(UpdateView):
+    model = models.Customer
+    template_name='users/update_form.html'
+    form_class = forms.CustomerUpdateForm
+    def get_object(self):
+        username = self.model.objects.get(user__username=self.request.user.username)
+        # print(username)
+        return username
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user     
 
-class EmployeeCreateView(CreateView):    
-    model = models.Employee
-    form_class = forms.CreateEmployeeForm
-    def form_valid(self, form):
-        form.instance.user = self.request.user     
+    #     return super().form_valid(form)
 
-        return super().form_valid(form)
+class CustomerDetailView(DetailView):
+    model = models.Customer
+    def get_object(self):
+        username = self.model.objects.get(user__username=self.request.user.username)
+        # username = self.model.objects.get(user__username=self.request.user.username)
+        print(username)
+        return username
 
-class EmployeeListView(ListView):
-    model = models.Employee      
-    
+class CustomerListView(ListView):
+    model = models.Customer
+
+
+    # def get_object(self):
+    #     customer = self.request.user
+       
+    #     return customer          
+
 # class UserCreateView(CreateView):
 #     model = User
 #     success_url = "/accounts/login/"
 #     template_name = "registration/registration.html"
 #     form_class = UserCreationForm
-
-class EmployeeUpdateView(UpdateView):
-    model = models.Employee
-    form_class = forms.CreateEmployeeForm
-
-class EmployeeDetailView(DetailView):
-    model = models.Employee

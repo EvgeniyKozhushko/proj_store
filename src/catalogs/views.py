@@ -25,7 +25,6 @@ class AuthorListView(ListView):
 class AuthorCreateView(CreateView):
     model = models.Author
     form_class = forms.CreateAuthorForm
-    #fields = ('dim_1', 'author_discription')
 
 class AuthorUpdateView(UpdateView):
     model = models.Author

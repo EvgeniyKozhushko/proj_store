@@ -8,17 +8,31 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Detail</th>
+      <th scope="col">Наименование книги и количество экземпляров</th>
       <th scope="col">Update</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Дата оформления заказа</th>
+      <th scope="col">Дата последнего изменения</th>
+
     </tr>
   </thead>
   <tbody>
     {% for order in order_list %}
     <tr>
       <th scope="row"> {{ order.pk }}</th>
-      <td><a href ="#">{{ order }}</a></td>
-      <td><a href ="#" class='btn btn-success' >Update</a></td>
-      <td><a href ="#" class='btn btn-warning'>Delete</a></td>
+      <td><a href ="{% url 'orders:deteil-order' order.pk %}">{{ order }}</a></td>
+      <td>
+        {% for book in order.cart.book.all %}
+  
+        {{book.title_book}}</br></br>
+  
+        {% endfor %}
+      </td>
+      <td><a href ="{% url 'orders:update-order' order.pk %}" class='btn btn-success'>Update</a></td>
+      <td>{{order.status_order}}</td>
+      <td>{{order.created}}</td>
+      <td>{{order.updated}}</td>
+
     </tr>
     {% endfor %}
   </tbody>

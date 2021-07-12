@@ -54,14 +54,8 @@ class RegisterForm(forms.Form):
                 self.add_error('password2', error)    
         return password2    
 
-
-
-class CreateEmployeeForm(forms.ModelForm):
+class CustomerUpdateForm(forms.ModelForm):
+    
     class Meta:
-        model = models.Employee
+        model = models.Customer
         fields = ('phone_number', 'country', 'city', 'index', 'adress1', 'adress1', 'discription')    
-
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = models.User
-        fields = '__all__'    
