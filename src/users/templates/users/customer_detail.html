@@ -6,6 +6,8 @@
   <div class="card-body">
     <h5 class="card-title">Данные пользователя</h5>
     <p class="card-text">    {{ customer }}<br>
+      Имя: {{ user.first_name }} <br>
+      Фамилия: {{ user.last_name }}<br>
       Номер телефона : {{ customer.phone_number }} <br>
       Страна : {{ customer.country }} <br>
       Город : {{ customer.city }} <br>
@@ -14,7 +16,8 @@
       Адрес 2 : {{ customer.adress2 }} <br>
       Примечание : {{ customer.discription }} <br>
       <p></p>
-    <a href="{% url 'accounts:update-account' user.customer.pk %}" class="btn btn-primary">Обновить данные</a>
+    <a href="{% url 'accounts:update-account' user.customer.pk %}" class="btn btn-primary">Обновить данные</a><br>
+    <a href="{% url 'orders:customer-list-order'%}" class="btn btn-success">Спикок Ваших заказов</a>
   </div>
 </div>
 {% endblock body %}

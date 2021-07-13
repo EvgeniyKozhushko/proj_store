@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 
 from orders import models
 from . import forms
+from .models import Order
 # Create your views here.
 
 class CreateOrderView(FormView):
@@ -54,3 +55,35 @@ class DetailOrderView(DetailView):
 class UpdateOrderView(UpdateView):
     model = models.Order
     form_class = forms.OrderUpdateForm
+
+class CustomerOrderListView(ListView):
+    model = Order
+    template_name = 'orders/customer_user_list.html'
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        carts = user.carts.all()
+        orders = Order.objects.filter(cart__in=carts)
+        cnt = {'object_list':orders}
+        print(cnt)
+        return cnt
+
+
+    # def get_context_data(self, **kwargs):
+    #     user = self.request.user
+    #     # print(user)
+    #     carts = user.carts.all()
+    #     # print(carts)
+    #     orders = Order.objects.order_by('-created').filter(cart__in=carts)
+    #     cnt = {'object_list':orders}
+    #     print(cnt)
+    #     return cnt
+
+
+    # def get_queryset(self):   
+    #     qs = super().get_queryset()
+    #     filter = self.request.GET.get('filter')
+    #     q = self.request.GET.get('q')
+    #     print(qs)
+
+    #     return qs

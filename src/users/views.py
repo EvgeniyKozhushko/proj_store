@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView, FormView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, FormView
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.models import GroupManager
 
@@ -46,20 +46,7 @@ class CustomerDetailView(DetailView):
     def get_object(self):
         username = self.model.objects.get(user__username=self.request.user.username)
         # username = self.model.objects.get(user__username=self.request.user.username)
-        print(username)
         return username
 
 class CustomerListView(ListView):
     model = models.Customer
-
-
-    # def get_object(self):
-    #     customer = self.request.user
-       
-    #     return customer          
-
-# class UserCreateView(CreateView):
-#     model = User
-#     success_url = "/accounts/login/"
-#     template_name = "registration/registration.html"
-#     form_class = UserCreationForm

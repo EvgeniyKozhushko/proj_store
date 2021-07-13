@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Book list{% endblock title %}
+{% block body %}
+
+<h1>Детали заказа Покупателя</h1>
+
+
+<table class="table table-hover">
+    <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Detail</th>
+    <th scope="col">Наименование книги и количество экземпляров</th>
+    <th scope="col">Update</th>
+    <th scope="col">Статус</th>
+    <th scope="col">Дата оформления заказа</th>
+    <th scope="col">Дата последнего изменения</th>
+
+  </tr>
+</thead>
+<tbody>
+  {% for order in object_list %}
+  <tr>
+    <th scope="row"> {{ order.pk }}</th>
+    <td><a href ="{% url 'orders:deteil-order' order.pk %}">{{ order }}</a></td>
+    <td>
+      {% for book in order.cart.goods.all %}
+      {{book.book}} <br>
+      Цена штуки {{book.unit_price}} <br>
+      Количество {{book.quantity}} <br><br>
+      {% endfor %} 
+    </td>
+    <td><a href ="{% url 'orders:update-order' order.pk %}" class='btn btn-success'>Update</a></td>
+    <td>{{order.status_order}}</td>
+    <td>{{order.created}}</td>
+    <td>{{order.updated}}</td>
+
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url 'home' %}">На главную</a>
+
+
+{% endblock body %}

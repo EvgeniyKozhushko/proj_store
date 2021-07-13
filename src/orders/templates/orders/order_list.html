@@ -3,6 +3,7 @@
 {% block body %}
 
 <h1>Все заказы</h1>
+
 <table class="table table-hover">
       <thead>
     <tr>
@@ -17,16 +18,16 @@
     </tr>
   </thead>
   <tbody>
-    {% for order in order_list %}
+    {% for order in object_list %}
     <tr>
       <th scope="row"> {{ order.pk }}</th>
       <td><a href ="{% url 'orders:deteil-order' order.pk %}">{{ order }}</a></td>
       <td>
-        {% for book in order.cart.book.all %}
-  
-        {{book.title_book}}</br></br>
-  
-        {% endfor %}
+        {% for book in order.cart.goods.all %}
+        {{book.book}} <br>
+        Цена штуки {{book.unit_price}} <br>
+        Количество {{book.quantity}} <br><br>
+        {% endfor %} 
       </td>
       <td><a href ="{% url 'orders:update-order' order.pk %}" class='btn btn-success'>Update</a></td>
       <td>{{order.status_order}}</td>
@@ -37,6 +38,8 @@
     {% endfor %}
   </tbody>
   </table>
+
+  
 
   <a href="{% url 'home' %}">На главную</a>
 
