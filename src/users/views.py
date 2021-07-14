@@ -10,9 +10,9 @@ from . import models
 from . import forms
 
 class RegisterView(FormView):
-    template_name = 'users/create.html' #accounts ?
+    template_name = 'users/create.html'
     form_class = forms.RegisterForm
-    success_url = "/accounts/login/" # прописать хом!!!!
+    success_url = "/books/home-books/"
     
     def form_valid(self, form):
         username = form.cleaned_data.get('username')
@@ -24,7 +24,7 @@ class RegisterView(FormView):
         user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
         customer = models.Customer.objects.create(user=user, phone_number=phone_number)
         #customer.save()
-        login(self.request, user) # проверить автологин
+        login(self.request, user)
         return super().form_valid(form)
 
 
@@ -34,18 +34,12 @@ class CustomerUpdateView(UpdateView):
     form_class = forms.CustomerUpdateForm
     def get_object(self):
         username = self.model.objects.get(user__username=self.request.user.username)
-        # print(username)
         return username
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user     
-
-    #     return super().form_valid(form)
 
 class CustomerDetailView(DetailView):
     model = models.Customer
     def get_object(self):
         username = self.model.objects.get(user__username=self.request.user.username)
-        # username = self.model.objects.get(user__username=self.request.user.username)
         return username
 
 class CustomerListView(ListView):

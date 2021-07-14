@@ -32,7 +32,7 @@ class BookListView(ListView):
 class CrewBookListView(ListView):
     model = models.Book
     template_name = 'books/crewbook_list.html'
-    paginate_by = 1
+    paginate_by = 10
     def get_queryset(self):
         qs = super().get_queryset()
         filter = self.request.GET.get('filter')
@@ -53,7 +53,6 @@ class HomeBookListView(ListView):
         q = self.request.GET.get('q')
         print(q)
         if q:
-            # qs.filter(title_book__icontains=q)
             qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
         return qs     
 
@@ -72,6 +71,6 @@ class BookUpdateView(PermissionRequiredMixin, UpdateView):
     
 class BookDeleteView(PermissionRequiredMixin, DeleteView):
     model = models.Book
-    success_url = reverse_lazy('books:book-list') 
+    success_url = reverse_lazy('books:book-list-crew') 
     login_url = 'accounts:login'
     permission_required = 'books.delete_book'

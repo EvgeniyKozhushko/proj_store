@@ -12,16 +12,18 @@
 
         <b>Книги</b> : 
         <ul>
-          {% for dim_1 in book.book_author.all %}
-          <li>{{ dim_1.dim_1 }}</li>
-          {% endfor %}
+          {% for book in order.cart.goods.all %}
+          {{book.book}} <br>
+          Цена штуки {{book.unit_price}} <br>
+          Количество {{book.quantity}} <br><br>
+          {% endfor %} 
         </ul>   
 
         <b>Статус заказа</b> : {{ order.status_order }} <br>
         <b>Контактные данные</b> : {{ order.contact_info }} <br>
         <b>Дата создания</b> : {{ order.created }} <br>
     </p>
-      <a href="{% url 'author:author-list' %}" class="btn btn-primary">К списку</a>
+      <a href="{% url 'orders:list-order' %}" class="btn btn-primary">К списку заказов</a>
     </div>
   </div>
   {% show_comments %}

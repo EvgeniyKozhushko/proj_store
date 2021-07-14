@@ -29,7 +29,7 @@ class Book(models.Model):
         return f"{self.title_book}"
 
     def get_absolute_url(self):
-        return reverse('books:book-list')
+        return reverse('books:book-list-crew')
     class Meta:
         verbose_name = "Книга"
         verbose_name_plural = "Книги"

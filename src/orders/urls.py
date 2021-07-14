@@ -10,6 +10,6 @@ urlpatterns = [
     path('deteil-order/<int:pk>/', views.DetailOrderView.as_view(),name='deteil-order'),
     path('update-order/<int:pk>/', views.UpdateOrderView.as_view(),name='update-order'),
     path('customer-list-order/', views.CustomerOrderListView.as_view(),name='customer-list-order'),
-    # path('author_update/<int:pk>/', cities_views.AuthorUpdateView.as_view(), name='author-update'),
+    path('customer-order-update/<int:pk>/', views.CustomerUpdateOrderView.as_view(), name='customer-order-update'),
     # path('author_delete/<int:pk>/', cities_views.AuthorDeleteView.as_view(), name='author-delete'),
 ]

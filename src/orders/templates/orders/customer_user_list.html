@@ -30,7 +30,7 @@
       Количество {{book.quantity}} <br><br>
       {% endfor %} 
     </td>
-    <td><a href ="{% url 'orders:update-order' order.pk %}" class='btn btn-success'>Update</a></td>
+    <td><a href ="{% url 'orders:customer-order-update' order.pk %}" class='btn btn-success'>Отменить заказ?</a></td>
     <td>{{order.status_order}}</td>
     <td>{{order.created}}</td>
     <td>{{order.updated}}</td>

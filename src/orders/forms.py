@@ -9,3 +9,8 @@ class OrderUpdateForm(forms.ModelForm):
     class Meta:
         model = models.Order
         fields='__all__'
+
+class CustomerOrderUpdateForm(forms.ModelForm):
+    class Meta:
+        model = models.Order
+        fields= ('canceled_order',)

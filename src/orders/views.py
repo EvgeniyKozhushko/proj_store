@@ -56,6 +56,11 @@ class UpdateOrderView(UpdateView):
     model = models.Order
     form_class = forms.OrderUpdateForm
 
+class CustomerUpdateOrderView(UpdateView):
+    model = models.Order
+    form_class = forms.CustomerOrderUpdateForm  
+    template_name = 'orders/customer-order-update.html'  
+
 class CustomerOrderListView(ListView):
     model = Order
     template_name = 'orders/customer_user_list.html'
@@ -67,23 +72,3 @@ class CustomerOrderListView(ListView):
         cnt = {'object_list':orders}
         print(cnt)
         return cnt
-
-
-    # def get_context_data(self, **kwargs):
-    #     user = self.request.user
-    #     # print(user)
-    #     carts = user.carts.all()
-    #     # print(carts)
-    #     orders = Order.objects.order_by('-created').filter(cart__in=carts)
-    #     cnt = {'object_list':orders}
-    #     print(cnt)
-    #     return cnt
-
-
-    # def get_queryset(self):   
-    #     qs = super().get_queryset()
-    #     filter = self.request.GET.get('filter')
-    #     q = self.request.GET.get('q')
-    #     print(qs)
-
-    #     return qs

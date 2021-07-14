@@ -17,7 +17,6 @@
               <div class="card-body">
                 <h5 class="card-title">Книга</h5>
                 <p class="card-text"> <a href ="{% url 'books:book' book.pk %}">{{ book }}</a><br>
-                  ID : {{ book.pk }} <br>
                   <b>Автор</b> : 
                   <ul>
                     {% for dim_1 in book.book_author.all %}
@@ -29,12 +28,11 @@
                   <b>Год издания</b> : {{ book.year_publishing }} <br>
                   <b>Количество страниц</b> : {{ book.number_pages }} <br>
                   <b>Формат </b>: {{ book.size }} <br>
-                  <b>Переплет </b>: {{ book.tbinding }} <br>
+                  <b>Переплет </b>: {{ book.binding }} <br>
                   <b>ISBN</b> : {{ book.ISBN }} <br>
                   <b>Издательство</b> : {{ book.publishing_house }} <br>
                   <b>Возрастные ограничения</b> : {{ book.age_restrictions }} <br>
                   <b>Вес (гр)</b> : {{ book.weight }} <br>
-                  <b>Количество в наличии (шт)</b>  : {{ book.in_stock }} <br>
                   <b>Доступга к заказу</b> : {% if book.available_to_order %} 
                     Есть на складе
                   {% else %}
