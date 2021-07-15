@@ -14,19 +14,20 @@ from . import forms
 
 class BookDetailView(DetailView):
     model = models.Book
-class BookListView(ListView):
-    model = models.Book
-    paginate_by = 3
+    
+# class BookListView(ListView):
+#     model = models.Book
+#     paginate_by = 3
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        filter = self.request.GET.get('filter')
-        q = self.request.GET.get('q')
-        print(q)
-        if q:
-            # qs.filter(title_book__icontains=q)
-            qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
-        return qs
+#     def get_queryset(self):
+#         qs = super().get_queryset()
+#         filter = self.request.GET.get('filter')
+#         q = self.request.GET.get('q')
+#         print(q)
+#         if q:
+#             # qs.filter(title_book__icontains=q)
+#             qs = qs.filter(Q(title_book__icontains=q) | Q(book_author__dim_1__icontains=q))
+#         return qs
 
 
 class CrewBookListView(ListView):

@@ -7,7 +7,7 @@
     <div class="card-body">
       <h5 class="card-title">Книга</h5>
       <p class="card-text">    {{ book }}<br>
-        ID : {{ book.pk }} <br>
+
         <b>Автор</b> : 
         <ul>
           {% for dim_1 in book.book_author.all %}
@@ -30,8 +30,9 @@
         {% else %}
           Нет в наличии
         {% endif %}        <br>
-        <b>Рейтинг</b> : {{ book.rating }} <br></p>
-      <a href="{% url 'books:book-list' %}" class="btn btn-primary">К списку</a>
+        <b>Рейтинг</b> : {{ book.rating }} <br>
+        <b>Стоимость за шт., BYN</b> : {{ book.book_price }} <br></p>
+      <a href="{% url 'books:home-books' %}" class="btn btn-primary">На главную</a>
     </div>
   </div>
   {% show_comments %}

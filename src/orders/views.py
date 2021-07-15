@@ -59,7 +59,8 @@ class UpdateOrderView(UpdateView):
 class CustomerUpdateOrderView(UpdateView):
     model = models.Order
     form_class = forms.CustomerOrderUpdateForm  
-    template_name = 'orders/customer-order-update.html'  
+    template_name = 'orders/customer-order-update.html'
+    success_url = reverse_lazy('orders:customer-list-order')  
 
 class CustomerOrderListView(ListView):
     model = Order

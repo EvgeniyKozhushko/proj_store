@@ -21,7 +21,12 @@ class Order(models.Model):
     contact_info = models.TextField(verbose_name='Контактная информация')
     created = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(verbose_name="Дата последнего изменения", auto_now_add=False, auto_now=True)
-    canceled_order = models.CharField(max_length=90,verbose_name="Причина отмены заказа", blank=True, null=True)
+    canceled_order = models.CharField(max_length=40,verbose_name="Причина отмены заказа", blank=True, null=True,
+        choices=[
+            ('свяжитесь со мной', 'свяжитесь со мной'),
+            ('отменить заказ', 'отменить заказ')
+        ]
+    )
     
     def get_absolute_url(self):
         return reverse('orders:list-order')

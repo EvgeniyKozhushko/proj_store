@@ -14,6 +14,7 @@
       <th scope="col">Статус</th>
       <th scope="col">Дата оформления заказа</th>
       <th scope="col">Дата последнего изменения</th>
+      <th scope="col">Статус отмены</th>
 
     </tr>
   </thead>
@@ -33,6 +34,7 @@
       <td>{{order.status_order}}</td>
       <td>{{order.created}}</td>
       <td>{{order.updated}}</td>
+      <td>{{order.canceled_order}}</td>
 
     </tr>
     {% endfor %}
