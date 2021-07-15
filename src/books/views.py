@@ -14,7 +14,7 @@ from . import forms
 
 class BookDetailView(DetailView):
     model = models.Book
-    
+
 # class BookListView(ListView):
 #     model = models.Book
 #     paginate_by = 3
@@ -47,7 +47,7 @@ class CrewBookListView(ListView):
 class HomeBookListView(ListView):
     model = models.Book
     template_name = 'books/home_books.html'
-    paginate_by = 2
+    paginate_by = 6
     def get_queryset(self):
         qs = super().get_queryset()
         filter = self.request.GET.get('filter')
